@@ -18,6 +18,7 @@ import (
 	"context"
 	"crypto/sha1"
 	"fmt"
+	"math/rand"
 	"path/filepath"
 	"sort"
 	"strconv"
@@ -48,7 +49,9 @@ type DeviceSpec struct {
 // Default applies default values for all fields that can be left empty.
 func (d *DeviceSpec) Default() {
 	for _, g := range d.Groups {
-		if g.Count == 0 {
+		if g.Mem {
+			g.Count = uint(rand.Intn(300))
+		} else if g.Count == 0 {
 			g.Count = 1
 		}
 		for _, p := range g.Paths {
@@ -72,6 +75,7 @@ type Group struct {
 	// Count specifies how many times this group can be mounted concurrently.
 	// When unspecified, Count defaults to 1.
 	Count uint `json:"count,omitempty"`
+	Mem   bool `json:"mem,omitempty"`
 }
 
 // Path represents a file path that should be discovered.
@@ -308,6 +312,7 @@ func (gp *GenericPlugin) ListAndWatch(_ *v1beta1.Empty, stream v1beta1.DevicePlu
 			}
 		}
 		<-time.After(deviceCheckInterval)
+		level.Info(gp.logger).Log("msg", "Refreshed devices")
 		ok, err = gp.refreshDevices()
 		if err != nil {
 			return err

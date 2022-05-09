@@ -61,6 +61,7 @@ spec:
     resources:
       limits:
         squat.ai/video: 1
+        squat.ai/fuse: 1
 EOF
 ```
 
