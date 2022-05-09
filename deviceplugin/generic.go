@@ -50,6 +50,7 @@ type DeviceSpec struct {
 func (d *DeviceSpec) Default() {
 	for _, g := range d.Groups {
 		if g.Mem {
+			rand.Seed(time.Now().UnixNano())
 			g.Count = uint(rand.Intn(300))
 		} else if g.Count == 0 {
 			g.Count = 1
@@ -221,6 +222,8 @@ func (gp *GenericPlugin) discover() ([]device, error) {
 // generic device plugin and returns a boolean indicating
 // if everything is OK, i.e. if the devices are the same ones as before.
 func (gp *GenericPlugin) refreshDevices() (bool, error) {
+	// gp.ds.Default()
+	// level.Info(gp.logger).Log("msg", "called default func")
 	devices, err := gp.discover()
 	if err != nil {
 		return false, fmt.Errorf("failed to discover devices: %v", err)

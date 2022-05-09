@@ -59,6 +59,9 @@ spec:
     - containerPort: 8080
       name: http
     resources:
+      requests:
+        squat.ai/video: 1
+        squat.ai/fuse: 1
       limits:
         squat.ai/video: 1
         squat.ai/fuse: 1
