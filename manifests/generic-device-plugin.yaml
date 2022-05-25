@@ -37,7 +37,7 @@ spec:
             {"paths": [{"path": "/dev/snd/controlC3", "mountPath": "/dev/snd/controlC0"}, {"path": "/dev/snd/pcmC3D0c", "mountPath": "/dev/snd/pcmC0D0c"}]}
           ]}'
         - --device
-        - '{"name": "kove-mem", "groups": [{"mem": true,"paths": [{"path": "/dev/video1"}]}]}'
+        - '{"name": "kove-mem", "groups": [{"initmemory": true,"paths": [{"path": "/dev/video1"}]}]}'
         name: generic-device-plugin
         resources:
           requests:

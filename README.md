@@ -21,7 +21,7 @@ Now, Pods that require a video capture device, such as an object detection servi
 ```yaml
 resources:
   limits:
-    squat.ai/video: 5
+    kove.net/video: 5
 ```
 
 The `--device` flag can be provided multiple times to allow the plugin to discover and allocate different types of resources.
@@ -60,13 +60,13 @@ spec:
       name: http
     resources:
       requests:
-        squat.ai/video: 1
-        squat.ai/fuse: 1
-        squat.ai/kove-mem: 5
+        kove.net/video: 1
+        kove.net/fuse: 1
+        kove.net/kove-mem: 5
       limits:
-        squat.ai/video: 1
-        squat.ai/fuse: 1
-        squat.ai/kove-mem: 5
+        kove.net/video: 1
+        kove.net/fuse: 1
+        kove.net/kove-mem: 5
 EOF
 ```
 
@@ -93,7 +93,7 @@ Usage of bin/amd64/generic-device-plugin:
                                   For example, to allocate and mount an audio capture device: {"name": "capture", "groups": [{"paths": [{"path": "/dev/snd/pcmC0D0c"}, {"path": "/dev/snd/controlC0"}]}]}
                                   A "count" can be specified to allow a discovered device to be scheduled multiple times.
                                   Note: if omitted, "count" is assumed to be 1
-      --domain string             The domain to use when when declaring devices. (default "squat.ai")
+      --domain string             The domain to use when when declaring devices. (default "kove.net")
       --listen string             The address at which to listen for health and metrics. (default ":8080")
       --log-level string          Log level to use. Possible values: all, debug, info, warn, error, none (default "info")
       --plugin-directory string   The directory in which to create plugin sockets. (default "/var/lib/kubelet/device-plugins/")

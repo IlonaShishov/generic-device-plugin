@@ -49,7 +49,7 @@ type DeviceSpec struct {
 // Default applies default values for all fields that can be left empty.
 func (d *DeviceSpec) Default() {
 	for _, g := range d.Groups {
-		if g.Mem {
+		if g.InitMemory {
 			rand.Seed(time.Now().UnixNano())
 			g.Count = uint(rand.Intn(9999))
 		} else if g.Count == 0 {
@@ -75,8 +75,8 @@ type Group struct {
 	Paths []*Path `json:"paths"`
 	// Count specifies how many times this group can be mounted concurrently.
 	// When unspecified, Count defaults to 1.
-	Count uint `json:"count,omitempty"`
-	Mem   bool `json:"mem,omitempty"`
+	Count      uint `json:"count,omitempty"`
+	InitMemory bool `json:"initmemory,omitempty"`
 }
 
 // Path represents a file path that should be discovered.
