@@ -24,21 +24,11 @@ spec:
       - image: quay.io/ishishov/device-plugin:1.0.0-SNAPSHOT
         args:
         - --device
-        - '{"name": "serial", "groups": [
-            {"paths": [{"path": "/dev/ttyACM*"}]},
-            {"paths": [{"path": "/dev/tty.usb*"}]},
-            {"paths": [{"path": "/dev/cu.*"}]},
-            {"paths": [{"path": "/dev/cuaU*"}]},
-            {"paths": [{"path": "/dev/rfcomm*"}]}
-          ]}'
+        - '{"name": "video", "groups": [{"paths": [{"path": "/dev/video0"}]}]}'
         - --device
-        - '{"name": "video", "groups": [{"mem": true, "count": 10, "paths": [{"path": "/dev/video0"}]}]}'
+        - '{"name": "fuse", "groups": [{"paths": [{"path": "/dev/fuse"}]}]}'
         - --device
-        - '{"name": "fuse", "groups": [{"count": 10, "paths": [{"path": "/dev/fuse"}]}]}'
-        - --device
-        - '{"name": "test", "groups": [{"count": 10, "paths": [{"path": "/dev/video1"}]}]}'
-        - --device
-        - '{"name": "audio", "groups": [{"count": 10, "paths": [{"path": "/dev/snd"}]}]}'
+        - '{"name": "audio", "groups": [{"paths": [{"path": "/dev/snd"}]}]}'
         - --device
         - '{"name": "capture", "groups": [
             {"paths": [{"path": "/dev/snd/controlC0"}, {"path": "/dev/snd/pcmC0D0c"}]},
@@ -46,6 +36,8 @@ spec:
             {"paths": [{"path": "/dev/snd/controlC2", "mountPath": "/dev/snd/controlC0"}, {"path": "/dev/snd/pcmC2D0c", "mountPath": "/dev/snd/pcmC0D0c"}]},
             {"paths": [{"path": "/dev/snd/controlC3", "mountPath": "/dev/snd/controlC0"}, {"path": "/dev/snd/pcmC3D0c", "mountPath": "/dev/snd/pcmC0D0c"}]}
           ]}'
+        - --device
+        - '{"name": "kove-mem", "groups": [{"mem": true,"paths": [{"path": "/dev/video1"}]}]}'
         name: generic-device-plugin
         resources:
           requests:

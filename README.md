@@ -62,9 +62,11 @@ spec:
       requests:
         squat.ai/video: 1
         squat.ai/fuse: 1
+        squat.ai/kove-mem: 5
       limits:
         squat.ai/video: 1
         squat.ai/fuse: 1
+        squat.ai/kove-mem: 5
 EOF
 ```
 

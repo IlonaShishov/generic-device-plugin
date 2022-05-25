@@ -51,7 +51,7 @@ func (d *DeviceSpec) Default() {
 	for _, g := range d.Groups {
 		if g.Mem {
 			rand.Seed(time.Now().UnixNano())
-			g.Count = uint(rand.Intn(300))
+			g.Count = uint(rand.Intn(9999))
 		} else if g.Count == 0 {
 			g.Count = 1
 		}
